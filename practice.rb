@@ -56,13 +56,6 @@ for i in (0...n_customers)
   puts "#{wallet_balance[:customer][i]}'s KelloggCoin balance is #{wallet_balance[:balance][i]}."
 end
 
-
-
-
-#puts blockchain[0][:from_user]
-#puts blockchain.length
-
-
 # It should print out:
 # Brian's KelloggCoin balance is 8000
 # Ben's KelloggCoin balance is 10350
