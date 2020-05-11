@@ -18,6 +18,51 @@ blockchain = [
 # Write code below that returns the number of KelloggCoin that each user has in their 
 # KelloggCoin "wallet".
 
+n_transactions = blockchain.length
+
+#Get the unique users
+unique_customers = []
+for i in (0...n_transactions)
+  if (blockchain[i][:from_user] !=  nil)
+    unique_customers = unique_customers.append(blockchain[i][:from_user])
+  end  
+  if (blockchain[i][:to_user] != nil)
+    unique_customers = unique_customers.append(blockchain[i][:to_user])
+  end
+end
+
+unique_customers = unique_customers.uniq
+n_customers = unique_customers.length
+
+#Get total balance
+total_balance = []
+for u in unique_customers
+  aux = 0
+  for i in (0...n_transactions)
+    if (blockchain[i][:from_user] == u)
+      aux = aux - blockchain[i][:amount]
+    elsif (blockchain[i][:to_user] == u)
+      aux = aux + blockchain[i][:amount]
+    end
+  end
+  total_balance = total_balance.append(aux)
+end
+
+wallet_balance ={
+    :customer => unique_customers, :balance => total_balance
+}
+
+for i in (0...n_customers) 
+  puts "#{wallet_balance[:customer][i]}'s KelloggCoin balance is #{wallet_balance[:balance][i]}."
+end
+
+
+
+
+#puts blockchain[0][:from_user]
+#puts blockchain.length
+
+
 # It should print out:
 # Brian's KelloggCoin balance is 8000
 # Ben's KelloggCoin balance is 10350
